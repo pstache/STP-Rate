@@ -1,7 +1,0 @@
-# STP & Human Touches — Streamlit App
-# Tested with the versions below. Use `>=` to allow newer compatible releases,
-# or pin exactly with `==` if you want fully reproducible installs.
-
-streamlit>=1.30.0
-pandas>=2.0.0
-plotly>=5.18.0
