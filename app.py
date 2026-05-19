@@ -38,32 +38,23 @@ if "theme" not in st.session_state:
 def seed_data():
     """Default workflows with sub-steps."""
     return pd.DataFrame([
-        # Tegning
-        ("Tegning",      "Mottak ordre",        96.5,  12),
-        ("Tegning",      "Validering",          98.2,   6),
-        ("Tegning",      "Allokering",          99.1,   3),
-        ("Tegning",      "Oppgjør",             94.8,  18),
-        ("Tegning",      "Registrering VPS",    93.2,  22),
-        # Innløsning
-        ("Innløsning",   "Mottak ordre",        95.8,  14),
-        ("Innløsning",   "Validering",          97.5,   8),
-        ("Innløsning",   "Allokering",          98.7,   4),
-        ("Innløsning",   "Oppgjør",             92.4,  26),
-        ("Innløsning",   "Registrering VPS",    91.5,  29),
-        # Bytte
-        ("Bytte",        "Mottak ordre",        93.2,  21),
-        ("Bytte",        "Validering",          95.6,  14),
-        ("Bytte",        "Bekreftelse",         96.8,  10),
-        ("Bytte",        "Oppgjør",             89.5,  34),
-        # Overføring
-        ("Overføring",   "Mottak forespørsel",  88.4,  38),
-        ("Overføring",   "Verifisering",        85.2,  47),
-        ("Overføring",   "Avstemming",          82.6,  56),
-        ("Overføring",   "Bekreftelse",         91.3,  28),
-        # Avstemming
-        ("Avstemming",   "Daglig avstemming",   97.8,   7),
-        ("Avstemming",   "Brudd-håndtering",    78.5,  62),
-        ("Avstemming",   "Rapportering",        99.2,   2),
+        # Oppgjør
+        ("Oppgjør",      "Kjøp - Innbetaling",        100.0,  0),
+        ("Oppgjør",      "Kjøp - Ordrebestilling",          95.0,   1),
+        ("Oppgjør",      "Kjøp - Settlement",          95.0,   1),
+        ("Oppgjør",      "Salg - Ordrebestilling",             100.0,  0),
+        ("Oppgjør",      "Salg - Settlement",    90.0,  1),
+        ("Oppgjør",      "Salg - Utbetaling",    0.0,  5),
+        # Flytt ASK
+        ("Flytt ASK",   "Bestillingsskjema",        100.0,  0),
+        ("Flytt ASK",   "RFH",          70.0,   4),
+        ("Flytt ASK",   "RHC",          25.0,   5),
+        ("Flytt ASK",   "PTOI",             10.0, 10),
+        ("Flytt ASK",   "PTOC",    15.0,  6),
+        ("Flytt ASK",   "Depotoverføring",    20.0,  4),
+        # Flytt FRI
+        ("Flytt FRI",        "Flytt Inn",        40.0,  5),
+        ("Flytt FRI",        "Flytt intern",          95.0,  1),
     ], columns=["arbeidsflyt", "steg", "stp_grad", "human_touches"])
 
 if "data" not in st.session_state:
@@ -303,7 +294,7 @@ with tab_overview:
         x=pivot.columns,
         y=pivot.index,
         colorscale=T["heatmap"],
-        zmin=75, zmax=100,
+        zmin=50, zmax=100,
         text=text_matrix,
         texttemplate="%{text}",
         textfont=dict(color=HVIT, size=12, family="Arial, sans-serif"),
