@@ -244,7 +244,7 @@ with tab_overview:
             plot_bgcolor=T["bg"], paper_bgcolor=T["bg"],
             font=dict(color=T["text"], family="Arial, sans-serif"),
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width=True)
 
     with c2:
         st.markdown("#### Human Touches per arbeidsflyt")
@@ -276,7 +276,7 @@ with tab_overview:
             plot_bgcolor=T["bg"], paper_bgcolor=T["bg"],
             font=dict(color=T["text"], family="Arial, sans-serif"),
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -314,7 +314,7 @@ with tab_overview:
         plot_bgcolor=T["bg"], paper_bgcolor=T["bg"],
         font=dict(color=T["text"], family="Arial, sans-serif"),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width=True)
 
 
 # ============================================================
@@ -340,7 +340,7 @@ with tab_data:
     edited = st.data_editor(
         st.session_state.data,
         num_rows="dynamic",
-        use_container_width=True,
+        width=True,
         hide_index=True,
         column_config={
             "arbeidsflyt": st.column_config.TextColumn(
@@ -373,7 +373,7 @@ with tab_data:
 
     with col_save:
         if st.button("💾 Lagre endringer", type="primary",
-                      use_container_width=True):
+                      width=True):
             invalid = edited[
                 edited["arbeidsflyt"].isna() | (edited["arbeidsflyt"] == "")
                 | edited["steg"].isna()        | (edited["steg"] == "")
@@ -387,7 +387,7 @@ with tab_data:
                 st.success("Lagret. Bytt til **Oversikt** for å se oppdateringen.")
 
     with col_reset:
-        if st.button("🔄 Tilbakestill", use_container_width=True):
+        if st.button("🔄 Tilbakestill", width=True):
             st.session_state.data = seed_data()
             st.success("Tilbakestilt til standard.")
             st.rerun()
@@ -399,7 +399,7 @@ with tab_data:
             data=csv,
             file_name="stp_arbeidsflyt.csv",
             mime="text/csv",
-            use_container_width=True,
+            width=True,
         )
 
 
